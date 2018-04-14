@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using XXX.Web.Interfaces;
 
 namespace XXX.Web.Services
 {
-    public class FormsAuthenticationService  :IFormsAuthenticationService
+    public class FormsAuthenticationService : IFormsAuthenticationService
     {
         public void SignIn(string userName, bool createPersistentCookie)
         {
-            throw new NotImplementedException();
+            if (String.IsNullOrEmpty(userName))
+                throw new ArgumentException("Value cannot be null or empty.", "userName");
+
+            FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
         }
 
         public void SignOut()
         {
-            throw new NotImplementedException();
+            FormsAuthentication.SignOut();
         }
     }
 }

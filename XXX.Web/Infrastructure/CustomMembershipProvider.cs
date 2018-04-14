@@ -9,7 +9,7 @@ using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using XXX.Data;
 using XXX.Models;
 
-namespace XXX.Web.Provider
+namespace XXX.Web.Infrastructure
 {
     public class CustomMembershipProvider : MembershipProvider
     {
@@ -17,7 +17,14 @@ namespace XXX.Web.Provider
             string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
             UsersContext context = new UsersContext();
-            var user = new User() { BlogID = "", EmailAddress = email, LastLoginTime = DateTime.Now, Password = password };
+            var user = new User()
+            {
+                UserName = username,
+                BlogID = "",
+                EmailAddress = email,
+                LastLoginTime = DateTime.Now,
+                Password = GetMd5Hash(password)
+            };
             context.AddUser(user);
             status = MembershipCreateStatus.Success;
             return GetUser(user.UserName, true);
