@@ -20,7 +20,6 @@ namespace XXX.Web.Infrastructure
             var user = new User()
             {
                 UserName = username,
-                BlogID = "",
                 EmailAddress = email,
                 LastLoginTime = DateTime.Now,
                 Password = GetMd5Hash(password)
