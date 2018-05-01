@@ -1,8 +1,0 @@
-version: '3'
-
-services:
-  xxx.web:
-    image: xxxweb
-    build:
-      context: .\XXX.Web
-      dockerfile: Dockerfile
