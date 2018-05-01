@@ -12,6 +12,10 @@ namespace XXX.Data
 {
     public class UsersContext : DbContext
     {
+        public UsersContext() : base("UsersContext")
+        {
+
+        }
         public DbSet<User> Users { get; set; }
 
         // Helper methods. User can also directly access "Users" property
